@@ -40,7 +40,9 @@
     <body>
         <div class="container">
             <div class="content">
+                <div class="title">Site under maintenance </div>
                 <div class="title">Be right back.</div>
+                <img src="/img/SASSCAL_LOGO_colour_ANGOLA.png" width="300">
             </div>
         </div>
     </body>
