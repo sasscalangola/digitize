@@ -12,7 +12,7 @@ class AddAdminUser extends Migration
      */
     public function up()
     {
-        DB::table('level')->insert([array(
+        DB::table('users')->insert([array(
             'id' => 1,
             'name' => 'David Elizalde',
             'email'=> 'delicast@gmail.com',
@@ -22,7 +22,7 @@ class AddAdminUser extends Migration
             'created_at' => '2016-07-21 15:55:48',
             'updated_at' => '2016-07-21 15:55:48',
             'type'=> '0',
-            
+
         )]);
     }
 
