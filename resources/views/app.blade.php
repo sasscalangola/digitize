@@ -18,6 +18,8 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
+
+
 @yield('content')
 
 <footer class="container-fluid text-center">

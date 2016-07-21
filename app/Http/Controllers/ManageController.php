@@ -30,6 +30,8 @@ class ManageController extends Controller
     }
     public  function project(){
         
+       
+        
         return view("manage/project");
     }
     public  function init_project(){
@@ -45,7 +47,7 @@ class ManageController extends Controller
             $nature='Private';
             $name='Comuna de Lunge - Bailundo - Huambo';
             $shp_path_prj=base_path().'/public/uploads/LungeWGS84.shp';
-            $shp_path_grid= base_path().'/public/uploads/Lunge_MMONAD_Grid_shaped_2nd_half.shp';
+            $shp_path_grid= base_path().'/public/uploads/Lunge_MMONAD_Grid_shaped.shp';
 
 
             $grouping='Lunge';
