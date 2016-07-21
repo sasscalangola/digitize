@@ -41,7 +41,7 @@ class ManageController extends Controller
         }
         else{
             $project_id=1;
-            $project_manager=2;
+            $project_manager=1;
             $qlty_times=2;
             $description='Project for the Comuna de Lunge in Bailundo, Huambo. Profile of Municipios Project Managed by Beat Weber. Private Project, only controlled users can digitize';
             $nature='Private';
@@ -54,13 +54,13 @@ class ManageController extends Controller
 
             //REMOVE IF GRID IS THE SAME!
 
-            //$this->load_grid($grouping,$shp_path_grid);
+            $this->load_grid($grouping,$shp_path_grid);
             
-            //$this->load_project($project_id,$qlty_times,$description,$nature,$name,$shp_path_prj);
+            $this->load_project($project_id,$qlty_times,$description,$nature,$name,$shp_path_prj);
 
             //TARDA Mazo...mas de 30 sec
 
-            //$this->grid_to_project($project_id, $grouping);
+            $this->grid_to_project($project_id, $grouping);
 
             $this->user_to_project($project_id,$project_manager); //as manager
 
