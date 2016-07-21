@@ -22,7 +22,7 @@ class indexController extends Controller
     }
     public  function index(){
 
-        dd(phpinfo());
+        
         //FORCAR o PROJECT n 1
         $project_id=1;
         $project=Projects::find($project_id);
