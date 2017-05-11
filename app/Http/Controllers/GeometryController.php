@@ -22,7 +22,7 @@ class GeometryController extends Controller
         $json=DB::select($sql)[0]->row_to_json;
         return ($json);
     }
-    public  function get_project_json()
+    public  function get_project_json($project_id)
     {
         //
         $sql=   "SELECT row_to_json(fc)
@@ -32,7 +32,7 @@ class GeometryController extends Controller
                     , ST_AsGeoJSON(ST_Transform(lg.polygon_area,3857))::json As geometry
                     , row_to_json((SELECT l FROM (SELECT id) As l
                       )) As properties
-                   FROM project As lg   ) As f )  As fc;";
+                   FROM project As lg WHERE id=$project_id  ) As f )  As fc;";
 
         $json=DB::select($sql)[0]->row_to_json;
         return ($json);

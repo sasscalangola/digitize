@@ -13,7 +13,6 @@ class AddAdminUser extends Migration
     public function up()
     {
         DB::table('users')->insert([array(
-            'id' => 1,
             'name' => 'David Elizalde',
             'email'=> 'delicast@gmail.com',
             'password'=> '$2y$10$GqEl8iB2wy8SfemLTasJyO.T2JHFqtMIBeGlXhtlES7qYz/yLgAHC',

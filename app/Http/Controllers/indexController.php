@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\GridsDigitizes;
 use App\Households;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
 use App\Grid_bicuar;
@@ -20,12 +21,18 @@ class indexController extends Controller
     public  function test(){
         return view("oltest");
     }
-    public  function index(){
+    public  function home(){
+
+        return Redirect::to('lunge');
+    }
+
+    public  function index($proj_name){
 
         
-        //FORCAR o PROJECT n 1
-        $project_id=1;
-        $project=Projects::find($project_id);
+        //PEGAR PROJECTO DO SHORTNAME DO URL
+        $project=Projects::where('shortname','=',$proj_name)->first();
+        $project_id=$project->id;
+
 
 
 
@@ -59,7 +66,7 @@ class indexController extends Controller
         $num_images_left_real= $num_images * $project->qlty_times_per_image -$num_images_processed_with_repetitions;
         
         $num_images_left=$num_images-$num_images_processed;
-        $num_households=Households::count();
+        $num_households=Households::where('project_id',$project_id)->count();
         $sq_km=$num_images_processed*0.06;
 
         $percentagem=$num_images_processed_with_repetitions*100/$num_images* $project->qlty_times_per_image;
@@ -72,14 +79,10 @@ class indexController extends Controller
         }else{
             $perc_void=number_format($num_images_void*100/$num_images_processed_with_repetitions,0);
         }
-
-
-
-
-
+        
         $num_users=$project->users()->count();
 
 
-        return view("index", compact('num_users','grid','num_images_left','num_images_processed','num_images_processed_with_repetitions','num_images_left_real','num_households','sq_km','percentagem','perc_void','project'));
+        return view("index", compact('num_users','grid','num_images_left','num_images_processed','num_images_processed_with_repetitions','num_images','num_images_left_real','num_households','sq_km','percentagem','perc_void','project'));
     }
 }

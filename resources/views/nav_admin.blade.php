@@ -27,7 +27,7 @@
                 </li>
 
 
-                <li class=""><a href="/manage/project">Project</a></li>
+                <li class=""><a href="/manage/new_project">New Project</a></li>
                 <li class=""><a href="/manage/results">Results</a></li>
                 <li class=""><a href="/manage/quality">Quality Control</a></li>
 

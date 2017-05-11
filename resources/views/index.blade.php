@@ -5,15 +5,20 @@
 
 @include('nav')
 
-<div class="jumbotron text-center">
-    <h1>HouseHolds Digitization</h1>
-    <p>Help discovering where small villages and houses are in Angola!</p>
-    <a href="/index#digitize"><button type="button" class="btn btn-danger">Start Digitizing!</button></a>
+<div class="jumbotron text-center" style="padding: 40px 25px 25px 25px;">
+    <h1 style="font-size: 40px">HouseHolds Digitization Tool</h1>
+    <p>{{$project->name}}</p>
+    @if ($project->logo_file)
+        <a href='{{$project->project_url}}'><img src='/img/{{$project->logo_file}}' width="150"></a>
+    @endif
+    <a href="https://www.sasscal.org"><img src="/img/sasscal_white.png" width="200"></a>
+    <br><br>
+    <a href="#digitize"><button type="button" class="btn btn-danger">Start Digitizing!</button></a>
 
 </div>
 <!-- Container (Progress Section) -->
 <div id="progress" class="container-fluid text-center progress-style">
-    <h2 class="inverse">Current Project <span style="color:red" class="inverse">[{{$project->name}}]</span> Progress - {{$percentagem}}%</h2>
+    <h2 class="inverse">Progress - {{$percentagem}}%</h2>
     <br>
     <div class="row ">
         <div class="progress">
@@ -27,7 +32,7 @@
         <div class="col-sm-4">
             <span class="glyphicon glyphicon-th-large logo-small"></span>
             <h4 class="inverse">{{$num_images_processed_with_repetitions}} digitizations done</h4>
-            <p>Completing {{$num_images_processed}} images</p>
+            <!-- <p>Completing {{$num_images_processed}} images</p> -->
         </div>
         <div class="col-sm-4">
             <span class="glyphicon glyphicon-home logo-small"></span>
@@ -44,7 +49,7 @@
         <div class="col-sm-4">
             <span class="glyphicon glyphicon-th logo-small"></span>
             <h4 class="inverse">{{$num_images_left_real}} digitizations left</h4>
-            <p>To complete {{$num_images_left}} images</p>
+            <p>To complete {{$num_images}} images</p>
         </div>
 
         <div class="col-sm-4">

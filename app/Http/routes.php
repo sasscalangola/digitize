@@ -34,7 +34,8 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('map', 'Map@index');
     Route::post('map', 'Map@save_and_next');
 
-    Route::get('manage/project', 'ManageController@project');
+    Route::get('manage/new_project', 'ManageController@new_project');
+    Route::post('manage/store_new_project', 'ManageController@store_new_project');
     Route::get('manage/admin/{proj_id}', 'ManageController@admin');
     Route::get('manage/project/init_project', 'ManageController@init_project');
 
@@ -49,11 +50,13 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::get('/home', 'indexController@index');
-    Route::get('/', 'indexController@index');
-    Route::get('index', 'indexController@index');
 
-    Route::get('geometry/get_project_json', 'GeometryController@get_project_json');
+    Route::get('/home', 'indexController@home');
+    Route::get('/', 'indexController@home');
+    Route::get('/index', 'indexController@home');
+    Route::get('{proj_name}/', 'indexController@index');
+
+    Route::get('geometry/get_project_json/{project_id}', 'GeometryController@get_project_json');
     Route::get('geometry/get_project_extent', 'GeometryController@get_project_extent');
     Route::get('geometry/get_cell_json/{id}', 'GeometryController@get_cell_json');
 

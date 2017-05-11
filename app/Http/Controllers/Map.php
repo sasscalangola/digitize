@@ -31,6 +31,9 @@ class Map extends Controller
     public function save_and_next( Request $request){
 
         $project_id=$request['project_id'];
+        $project=Projects::find($project_id);
+        $project_shortname=$project->shortname;
+
 
         if(Auth::user()->projects()->find($project_id)== null){
             return Redirect::to('index#digitize');
@@ -68,13 +71,14 @@ class Map extends Controller
                     $new_house->point=DB::raw("ST_GeomFromText('POINT({$x_house} {$y_house})', 4326)");
                     $new_house->user_id=$user;
                     $new_house->grid_digitize_id=GridsDigitizes::orderBy('created_at','desc')->first()->id;
+                    $new_house->project_id=$project_id;
                     $new_house->save();
 
                 }
         }
 
 
-        return Redirect::to('index#digitize');
+        return Redirect::to($project_shortname.'#digitize');
 
     }
 

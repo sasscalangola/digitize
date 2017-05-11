@@ -20,7 +20,7 @@ var p_poligon=new ol.layer.Vector({
 
     source: new ol.source.Vector({
 
-        url: '/geometry/get_project_json',
+        url: '/geometry/get_project_json/'+project_id,
         format: new ol.format.GeoJSON({
 
             defaultDataProjection :'EPSG:3857',
