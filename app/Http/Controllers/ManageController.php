@@ -70,7 +70,7 @@ class ManageController extends Controller
             $shortname='halo-kanenguerere'; //NAME FOR URL PROJECT
             $project_url='https://www.halotrust.org/';
             $logo_file='Halo.svg';
-            $shp_path_prj=base_path().'/public/uploads/Kanenguerere_project';
+            $shp_path_prj=base_path().'/public/uploads/Kanenguerere_project.shp';
             $shp_path_grid= base_path().'/public/uploads/Grid_small_cut_kanenguerere.shp';
             $area=314.15;
 
@@ -79,15 +79,15 @@ class ManageController extends Controller
 
             //REMOVE IF GRID IS THE SAME!
 
-            $this->load_grid($grouping,$shp_path_grid);
+            //$this->load_grid($grouping,$shp_path_grid);
             
-            $this->load_project($project_id,$qlty_times,$area,$description,$nature,$name,$shp_path_prj,$shortname,$project_url,$logo_file);
-
+            //$this->load_project($project_id,$qlty_times,$area,$description,$nature,$name,$shp_path_prj,$shortname,$project_url,$logo_file);
+            $this->reload_project_shape($project_id,$shp_path_prj);
             //TARDA Mazo...mas de 30 sec
 
-            $this->grid_to_project($project_id, $grouping);
+            //$this->grid_to_project($project_id, $grouping);
 
-            $this->user_to_project($project_id,$project_manager); //as manager
+            //$this->user_to_project($project_id,$project_manager); //as manager
 
             return Redirect::to('manage/admin/'.$project_id);
         }
@@ -119,11 +119,11 @@ class ManageController extends Controller
     // LOAD_PROJECT
     // Loads a project from a shapefile and some parameters into the project table. For now I use it manually but the goal is that the
     // project manager can select the shapefile and load a project. Consider the shapefile has only 1 feature
-    public  function load_project($project_id,$qlty_times,$area,$description,$nature,$name,$shp_path,$shortname,$project_url,$logo_file){
+    public  function load_project($project_id,$qlty_times,$area,$description,$nature,$name,$shp_path_prj,$shortname,$project_url,$logo_file){
 
 
         try {
-            $ShapeFile = new ShapeFile($shp_path);
+            $ShapeFile = new ShapeFile($shp_path_prj);
             $record = $ShapeFile->getRecord(SHAPEFILE::GEOMETRY_WKT);
 
             // Geometry
@@ -146,6 +146,16 @@ class ManageController extends Controller
             exit('Error '.$e->getCode().': '.$e->getMessage());
         }
 
+    }
+    public function reload_project_shape($project_id,$shp_path_prj){
+        try {
+            $project=Projects::find($project_id);
+            $ShapeFile = new ShapeFile($shp_path_prj);
+            $record = $ShapeFile->getRecord(SHAPEFILE::GEOMETRY_WKT);
+            $project->polygon_area=DB::raw("ST_GeomFromText('".$record['shp']."', 4326)");;
+        } catch (ShapeFileException $e) {
+            exit('Error '.$e->getCode().': '.$e->getMessage());
+        }
     }
 
     // LOAD_GRID
