@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+
 class AuthController extends Controller
 {
     /*
@@ -28,16 +29,25 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/index';
+
+     protected $redirectTo ='';
 
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
+
+    //NAO FUNCIONA ISTO -- A IDEIA ERA FICAR NA MESMA PAGINA QUANDO FAZES LOGOUT
+    public function getLogout()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        auth()->logout();
+        return redirect(session()->pull('from',$this->redirectTo));
+    }
+    public function __construct()
+
+    {
+        $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
     }
 
     /**
@@ -69,4 +79,20 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    //THIS 2 FUNCIONTS WHRE JUST ADDED TO MAKE THE USER BE REDIRECTED TO THE PAGE WHERE HE CLICKED HE LOG IN BUTTON.
+    public function showLoginForm()
+    {
+        if(!session()->has('from')){
+            session()->put('from', url()->previous());
+        }
+        return view('auth.login');
+    }
+
+    public function authenticated($request,$user)
+    {
+        return redirect(session()->pull('from',$this->redirectTo));
+    }
+
+
 }

@@ -50,6 +50,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+    Route::get('/logout', 'Auth\AuthController@getLogout');
 
     Route::get('/home', 'indexController@home');
     Route::get('/', 'indexController@home');

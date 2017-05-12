@@ -14,6 +14,7 @@
     </div>
     <script>
         var project_id = "{{$project->id}}";
+        console.log('PROJECT ID'+project_id);
     </script>
     <script src="{{ asset('/js/map_project.js') }}"></script>
 
