@@ -7,7 +7,7 @@ There are still many aspects to be developed and all contributions are welcome t
 
 The project is developed with Laravel 5.
 
-Project developed by David Elizalde Castells while working at SASSCAL Angola National Node as Data Manager until June 2017.
+Project developed by David Elizalde Castells (delicast@gmail.com) while working at SASSCAL Angola National Node as Data Manager until June 2017.
 
 The project is licensed under a MIT Open Source License. See License file.
 SASSCAL Angola 2017
