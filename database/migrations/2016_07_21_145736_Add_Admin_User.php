@@ -13,9 +13,9 @@ class AddAdminUser extends Migration
     public function up()
     {
         DB::table('users')->insert([array(
-            'name' => 'David Elizalde',
-            'email'=> 'delicast@gmail.com',
-            'password'=> '$2y$10$GqEl8iB2wy8SfemLTasJyO.T2JHFqtMIBeGlXhtlES7qYz/yLgAHC',
+            'name' => 'Admin',
+            'email'=> 'admin@gmail.com',
+            'password'=> '$2y$10$GqEl8iB2wy8ufemLTasJyO.T2JDDDFqtMIGlXhtlESqYz/yLgAHC',
             'admin'=> '1',
             'remember_token'=>'OPEa26wqpXQy1WlnqGRfwStX6ESEiOlvLQTI5Aec1Xtt8hdkldGzOWf9uzzO',
             'created_at' => '2016-07-21 15:55:48',
