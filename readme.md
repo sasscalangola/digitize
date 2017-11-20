@@ -1,3 +1,22 @@
+# Households Digitization Tool
+
+This project contains the code for the Households digitization tool as it was developed until June 2017. 
+Code has not yet been depurated and fully tested and comments are missing. Yet the application is functional on its core purposes.
+
+There are still many aspects to be developed and all contributions are welcome to improve the application.
+
+The project is developed with Laravel 5.
+
+Project developed by David Elizalde Castells while working at SASSCAL Angola National Node as Data Manager until June 2017.
+
+The project is licensed under a MIT Open Source License. See License file.
+SASSCAL Angola 2017
+
+
+
+
+
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
